@@ -1,0 +1,7 @@
+CMakeLists.txt.user
+flatpak/release/repo.tar
+flatpak/.flatpak-builder/*
+flatpak/build-dir/*
+repo.tar
+build/*
+.cache/*

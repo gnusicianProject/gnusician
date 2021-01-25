@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Gnusician
+Comment=Tool for learning to play guitar
+Exec=flatpak --filesystem=host --socket=x11 --device=dri --share=network --share=ipc run com.gnusicianproject.gnusician
+Icon=com.gnusicianproject.gnusician.png
+Terminal=false
+Type=Application
+Categories=Education;Audio;

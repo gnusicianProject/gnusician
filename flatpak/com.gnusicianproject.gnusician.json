@@ -1,0 +1,26 @@
+{
+    "app-id": "com.gnusicianproject.gnusician",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "5.15",
+    "sdk": "org.kde.Sdk",
+    "command": "gnusician",
+    "finish-args": [
+        "--filesystem=home", 
+        "--socket=x11",
+        "--device=dri",
+        "--share=network", 
+        "--share=ipc"
+    ],
+    "modules": [
+        {
+            "name": "gnusician",
+            "buildsystem": "cmake",
+            "sources": [
+                {
+                    "path": "../",
+                    "type": "dir"
+                }
+            ]
+        }
+    ]
+}
