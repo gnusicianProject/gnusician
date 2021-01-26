@@ -45,6 +45,7 @@
 	color: rgb(0, 121, 107);
 }</string>
        </property>
+       <layout class="QVBoxLayout" name="vlLoginPage"/>
       </widget>
       <widget class="QWidget" name="libraryPage"/>
      </widget>
@@ -52,6 +53,8 @@
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -1,0 +1,11 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>avatars/avatarMouse.svg</file>
+    <file>avatars/avatarCat.svg</file>
+    <file>avatars/avatarDog.svg</file>
+    <file>avatars/avatarDinosaur.svg</file>
+    <file>avatars/avatarPigeon.svg</file>
+    <file>avatars/avatarBison.svg</file>
+    <file>forms/loginPage.ui</file>
+</qresource>
+</RCC>

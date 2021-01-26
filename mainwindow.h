@@ -8,6 +8,7 @@
 #include "qtmaterialappbar.h"
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialtextfield.h"
+#include "qtmaterialdrawer.h"
 
 #include "loginManager.h"
 
@@ -29,11 +30,7 @@ private:
     Ui::MainWindow *ui;
 
     loginManager* loginMan;
-
-    QVBoxLayout* vlLogin;
-    QLabel* loginPageTitle;
     QtMaterialAppBar* appbar;
-    QtMaterialRaisedButton* raisedButton;
-    QtMaterialTextField* usernameField;
+    QtMaterialDrawer* drawer;
 };
 #endif // MAINWINDOW_H

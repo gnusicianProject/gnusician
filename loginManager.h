@@ -3,8 +3,12 @@
 
 #include <qboxlayout.h>
 #include <qlabel.h>
+#include <qlayout.h>
+#include <qpushbutton.h>
+#include <quiloader.h>
 #include <QWidget>
 #include <QScrollArea>
+#include <QUiLoader>
 #include "qtmaterialtextfield.h"
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialflatbutton.h"
@@ -24,24 +28,23 @@ public:
     ~loginManager();
 
 public slots:
+    void switchView();
 
 private:
+    QUiLoader* uiLoader;
     QVBoxLayout* mainLayout;
+    QWidget* loginPageWidget;
 
-    QWidget* createAccoutWidget;
-    QVBoxLayout* vlCreateAccout;
-    QLabel* lCreateAccout;
+    QWidget* frameSelectWidget;
+    QWidget* frameCreateWidget;
+
     QtMaterialTextField* mtfCreateUsername;
     QtMaterialTextField* mtfCreatePassword;
     QtMaterialRaisedButton* mrbCreateButton;
 
-    QWidget* selectAccoutWidget;
-    QVBoxLayout* vlSelectAccout;
-    QLabel* lSelectAccout;
     QScrollArea* saSelect;
-    QVBoxLayout* vlSelectScrollArea;
-
-    QVector<QtMaterialFlatButton*> selectUserList;
+    QPushButton* pbSwitchView;
+    QVector<QPushButton*> selectUserList;
 };
 
 #endif

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>loginPageWidget</class>
+ <widget class="QWidget" name="loginPageWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>595</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>500</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget
+{
+	background-color: white
+}
+QWidget#frameSelectWidget
+{
+	border: 1px solid rgb(200,200,200);
+	border-radius: 5px;
+}
+QWidget#frameCreateWidget
+{
+	border: 1px solid rgb(200,200,200);
+	border-radius: 5px;
+}
+QScrollArea
+{
+	border: none;
+}
+QLabel
+{
+	color: rgb(47, 72, 88)
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="vlLoginPage">
+   <property name="leftMargin">
+    <number>9</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="lLoginTitle">
+     <property name="font">
+      <font>
+       <pointsize>72</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+       <underline>false</underline>
+      </font>
+     </property>
+     <property name="tabletTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Gnusician</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="vsLoginSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QWidget" name="frameCreateWidget" native="true">
+     <layout class="QVBoxLayout" name="vlCreate">
+      <item>
+       <widget class="QLabel" name="lCreate">
+        <property name="font">
+         <font>
+          <pointsize>32</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Create Account</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="frameSelectWidget" native="true">
+     <layout class="QVBoxLayout" name="vlSelect">
+      <item>
+       <widget class="QLabel" name="lUsers">
+        <property name="font">
+         <font>
+          <pointsize>32</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Users</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QScrollArea" name="saSelectUser">
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>464</width>
+           <height>92</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="vlScrollArea"/>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pbSwitchView">
+     <property name="text">
+      <string>Don't have an account? Create one!</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

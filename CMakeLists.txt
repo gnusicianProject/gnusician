@@ -25,8 +25,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Widgets UiTools REQUIRED)
 
 include_directories(qt-material-widgets/components)
 add_subdirectory(qt-material-widgets/components)
@@ -37,26 +36,16 @@ set(PROJECT_SOURCES
         mainwindow.h
         loginManager.cpp
         loginManager.h
+        common.h
         mainwindow.ui
 )
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(gnusician
-        ${PROJECT_SOURCES}
-    )
-else()
-    if(ANDROID)
-        add_library(gnusician SHARED
-            ${PROJECT_SOURCES}
-        )
-    else()
-        add_executable(gnusician
-            ${PROJECT_SOURCES}
-        )
-    endif()
-endif()
+add_executable(gnusician
+    ${PROJECT_SOURCES}
+    resources/appresources.qrc
+)
 
-target_link_libraries(gnusician PRIVATE Qt5::Core Qt5::Widgets material)
+target_link_libraries(gnusician PRIVATE Qt5::Core Qt5::Widgets Qt5::UiTools material)
 target_include_directories(gnusician PUBLIC ./ ./qt-material-widgets/components)
 install(TARGETS gnusician DESTINATION bin)
 install(TARGETS material DESTINATION lib)
