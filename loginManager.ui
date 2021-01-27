@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>loginPageWidget</class>
- <widget class="QWidget" name="loginPageWidget">
+ <class>loginManager</class>
+ <widget class="QWidget" name="loginManager">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>595</height>
+    <height>601</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -29,13 +29,9 @@
 }
 QWidget#frameSelectWidget
 {
-	border: 1px solid rgb(200,200,200);
-	border-radius: 5px;
 }
 QWidget#frameCreateWidget
 {
-	border: 1px solid rgb(200,200,200);
-	border-radius: 5px;
 }
 QScrollArea
 {
@@ -132,10 +128,14 @@ QLabel
            <x>0</x>
            <y>0</y>
            <width>464</width>
-           <height>92</height>
+           <height>95</height>
           </rect>
          </property>
-         <layout class="QVBoxLayout" name="vlScrollArea"/>
+         <layout class="QVBoxLayout" name="vlScrollArea">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+         </layout>
         </widget>
        </widget>
       </item>

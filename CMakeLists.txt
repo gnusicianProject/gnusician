@@ -36,8 +36,12 @@ set(PROJECT_SOURCES
         mainwindow.h
         loginManager.cpp
         loginManager.h
+        common.cpp
         common.h
+        userInfo.cpp
+        userInfo.h
         mainwindow.ui
+        loginManager.ui
 )
 
 add_executable(gnusician

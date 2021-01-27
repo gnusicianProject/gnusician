@@ -59,4 +59,5 @@ void MainWindow::initUi()
     // Create the login page
     this->loginMan = new loginManager(ui->loginPage);
     ui->vlLoginPage->addWidget(this->loginMan);
+    ui->vlLoginPage->setAlignment(Qt::AlignCenter);
 }

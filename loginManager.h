@@ -5,14 +5,19 @@
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qpushbutton.h>
-#include <quiloader.h>
 #include <QWidget>
 #include <QScrollArea>
-#include <QUiLoader>
 #include "qtmaterialtextfield.h"
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialflatbutton.h"
+#include "ui_loginManager.h"
+#include "userInfo.h"
 
+namespace ui
+{
+    class loginManager;
+}
+QT_END_NAMESPACE
 
 /**
  * The loginManager class creates the widgets on the login page.
@@ -27,24 +32,24 @@ public:
     loginManager(QWidget* parent = nullptr);
     ~loginManager();
 
+    void loadUsers();
+
+
 public slots:
     void switchView();
 
 private:
-    QUiLoader* uiLoader;
-    QVBoxLayout* mainLayout;
-    QWidget* loginPageWidget;
+    userInfo* getUser(QString path);
 
-    QWidget* frameSelectWidget;
-    QWidget* frameCreateWidget;
+    Ui::loginManager* ui;
 
     QtMaterialTextField* mtfCreateUsername;
     QtMaterialTextField* mtfCreatePassword;
     QtMaterialRaisedButton* mrbCreateButton;
 
-    QScrollArea* saSelect;
-    QPushButton* pbSwitchView;
-    QVector<QPushButton*> selectUserList;
+    QVector<QPushButton*> userButtonList;
+    QVector<userInfo*> userList;
+    userInfo* user;
 };
 
 #endif
