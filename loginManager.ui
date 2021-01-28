@@ -128,7 +128,7 @@ QLabel
            <x>0</x>
            <y>0</y>
            <width>464</width>
-           <height>95</height>
+           <height>68</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="vlScrollArea">
@@ -137,6 +137,26 @@ QLabel
           </property>
          </layout>
         </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="frameAvatarWidget" native="true">
+     <layout class="QGridLayout" name="glAvatar">
+      <item row="0" column="0">
+       <widget class="QLabel" name="lAvatar">
+        <property name="font">
+         <font>
+          <pointsize>32</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Select Avatar</string>
+        </property>
        </widget>
       </item>
      </layout>

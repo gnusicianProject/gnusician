@@ -9,6 +9,7 @@
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialtextfield.h"
 #include "qtmaterialdrawer.h"
+#include "qtmaterialsnackbar.h"
 
 #include "loginManager.h"
 
@@ -32,5 +33,6 @@ private:
     loginManager* loginMan;
     QtMaterialAppBar* appbar;
     QtMaterialDrawer* drawer;
+    QtMaterialSnackbar* snackbar;
 };
 #endif // MAINWINDOW_H

@@ -11,13 +11,14 @@
 #include <QSpacerItem>
 
 #include "./ui_mainwindow.h"
+#include "common.h"
 #include "loginManager.h"
 #include "qtmaterialappbar.h"
 #include "qtmaterialdrawer.h"
 #include "qtmaterialiconbutton.h"
 #include "qtmaterialraisedbutton.h"
+#include "qtmaterialsnackbar.h"
 #include "qtmaterialtextfield.h"
-#include "common.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -41,16 +42,20 @@ void MainWindow::initUi()
     this->appbar->setFixedHeight(56);
     this->appbar->setBackgroundColor(QColor(QUEENBLUE));
     appbarButton->setColor(Qt::white);
-    appbarButton->setFixedSize(QSize(42,42));
+    appbarButton->setFixedSize(QSize(42, 42));
 
     // Create the app drawer
     this->drawer = new QtMaterialDrawer(this);
-    QVBoxLayout* drawerLayout = new QVBoxLayout(this->drawer);
+    QVBoxLayout *drawerLayout = new QVBoxLayout(this->drawer);
     this->drawer->setClickOutsideToClose(false);
     this->drawer->setDrawerWidth(250);
     this->drawer->setOverlayMode(true);
     this->drawer->setDrawerLayout(drawerLayout);
     connect(appbarButton, SIGNAL(clicked()), this->drawer, SLOT(openDrawer()));
+
+    // Create the snackbar
+    this->snackbar = new QtMaterialSnackbar(this);
+    this->snackbar->setClickToDismissMode(true);
 
     // Order widgets in layouts
     ui->mainLayout->addWidget(this->appbar, 0, 0);
@@ -60,4 +65,6 @@ void MainWindow::initUi()
     this->loginMan = new loginManager(ui->loginPage);
     ui->vlLoginPage->addWidget(this->loginMan);
     ui->vlLoginPage->setAlignment(Qt::AlignCenter);
+    connect(this->loginMan, SIGNAL(snackMessage(QString)), this->snackbar,
+            SLOT(addMessage(QString)));
 }

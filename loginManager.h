@@ -32,11 +32,20 @@ public:
     loginManager(QWidget* parent = nullptr);
     ~loginManager();
 
+    void loadAvatars();
     void loadUsers();
 
+signals:
+    void snackMessage(QString);
 
 public slots:
     void switchView();
+    void createAccount();
+
+private slots:
+    bool validateUsername(QString uname);
+    bool validatePassword(QString pass);
+    bool checkForExistingUser(QString uname);
 
 private:
     userInfo* getUser(QString path);
