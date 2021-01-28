@@ -198,8 +198,9 @@ userInfo* loginManager::getUser(QString path)
 }
 
 bool loginManager::validateUsername(QString uname)
-{
-    if (uname.contains(QRegExp("^[a-zA-Z0-9_]*$"))) return true;
+{   
+    if(not uname.isEmpty())
+        if (uname.contains(QRegExp("^[a-zA-Z0-9_]*$"))) return true;
     return false;
 }
 
