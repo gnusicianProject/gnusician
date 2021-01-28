@@ -38,6 +38,9 @@
     </property>
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
       <widget class="QWidget" name="loginPage">
        <property name="styleSheet">
         <string notr="true">QLabel
@@ -47,14 +50,36 @@
        </property>
        <layout class="QVBoxLayout" name="vlLoginPage"/>
       </widget>
-      <widget class="QWidget" name="libraryPage"/>
+      <widget class="QWidget" name="libraryPage">
+       <layout class="QVBoxLayout" name="vlLibraryPage">
+        <item>
+         <widget class="QLabel" name="lLibraryTitle">
+          <property name="text">
+           <string>Welcome</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="settingsPage"/>
      </widget>
     </item>
    </layout>
   </widget>
  </widget>
- <resources>
-  <include location="../../../../resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

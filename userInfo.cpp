@@ -1,6 +1,3 @@
 #include "userInfo.h"
 
-
-userInfo::userInfo()
-{
-}
+userInfo::userInfo() {}

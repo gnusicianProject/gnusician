@@ -1,13 +1,7 @@
 #include "mainwindow.h"
 
-#include <qboxlayout.h>
-#include <qcolor.h>
-#include <qlabel.h>
-#include <qlayoutitem.h>
-#include <qnamespace.h>
-#include <qsizepolicy.h>
-
 #include <QBoxLayout>
+#include <QDebug>
 #include <QSpacerItem>
 
 #include "./ui_mainwindow.h"
@@ -19,18 +13,21 @@
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialsnackbar.h"
 #include "qtmaterialtextfield.h"
+#include "userInfo.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     this->initUi();
+    this->connectSignals();
 }
 
 MainWindow::~MainWindow() { delete ui; }
 
 void MainWindow::initUi()
 {
+    ui->stackedWidget->setCurrentWidget(ui->loginPage);
     this->setWindowTitle("Gnusician");
     // Create the app bar
     this->appbar = new QtMaterialAppBar(this);
@@ -67,4 +64,17 @@ void MainWindow::initUi()
     ui->vlLoginPage->setAlignment(Qt::AlignCenter);
     connect(this->loginMan, SIGNAL(snackMessage(QString)), this->snackbar,
             SLOT(addMessage(QString)));
+}
+
+void MainWindow::connectSignals()
+{
+    connect(this->loginMan, SIGNAL(loginDone(userInfo *)), this,
+            SLOT(loginDone(userInfo *)));
+}
+
+void MainWindow::loginDone(userInfo *user)
+{
+    this->user = user;
+    ui->stackedWidget->setCurrentWidget(ui->libraryPage);
+    ui->lLibraryTitle->setText("Libray Page: Welcome " + user->name);
 }

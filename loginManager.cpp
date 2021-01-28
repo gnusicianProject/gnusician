@@ -1,19 +1,5 @@
 #include "loginManager.h"
 
-#include <qboxlayout.h>
-#include <qgraphicseffect.h>
-#include <qimage.h>
-#include <qlabel.h>
-#include <qline.h>
-#include <qnamespace.h>
-#include <qpixmap.h>
-#include <qpushbutton.h>
-#include <qregexp.h>
-#include <qscrollarea.h>
-#include <qsizepolicy.h>
-#include <quiloader.h>
-#include <qwidget.h>
-
 #include <QBoxLayout>
 #include <QDebug>
 #include <QDir>
@@ -21,6 +7,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QPixmap>
+#include <QToolButton>
 
 #include "common.h"
 #include "lib/qtmaterialtheme.h"
@@ -39,20 +26,29 @@ loginManager::loginManager(QWidget* parent)
 
     this->mtfCreateUsername = new QtMaterialTextField(ui->frameCreateWidget);
     this->mtfCreatePassword = new QtMaterialTextField(ui->frameCreateWidget);
+    this->mtfCreateName = new QtMaterialTextField(ui->frameAvatarWidget);
     this->mrbCreateButton = new QtMaterialRaisedButton(ui->frameCreateWidget);
+    this->mrbAvatarButton = new QtMaterialRaisedButton(ui->frameAvatarWidget);
     ui->vlCreate->addWidget(this->mtfCreateUsername);
     ui->vlCreate->addWidget(this->mtfCreatePassword);
     ui->vlCreate->addWidget(this->mrbCreateButton);
+    ui->vlAvatar->addWidget(this->mrbAvatarButton);
+    ui->vlAvatar->insertWidget(0, this->mtfCreateName);
 
     this->mrbCreateButton->setText("Create");
+    this->mrbAvatarButton->setText("Done");
     this->mtfCreateUsername->setLabel("Username");
     this->mtfCreatePassword->setLabel("Password (optional)");
+    this->mtfCreateName->setLabel("Name");
 
     // Tweak styles
     this->mrbCreateButton->setHaloVisible(false);
     this->mrbCreateButton->setBackgroundColor(QColor(SAFETYORANGE));
+    this->mrbAvatarButton->setHaloVisible(false);
+    this->mrbAvatarButton->setBackgroundColor(QColor(SAFETYORANGE));
     this->mtfCreateUsername->setInkColor(QColor(DARKSKY));
     this->mtfCreatePassword->setInkColor(QColor(DARKSKY));
+    this->mtfCreateName->setInkColor(QColor(DARKSKY));
     common::cardStyle(this, ui->frameCreateWidget);
     common::cardStyle(this, ui->frameSelectWidget);
     common::cardStyle(this, ui->frameAvatarWidget);
@@ -71,21 +67,24 @@ loginManager::loginManager(QWidget* parent)
 
     connect(ui->pbSwitchView, SIGNAL(clicked()), this, SLOT(switchView()));
     connect(this->mrbCreateButton, SIGNAL(clicked()), this,
+            SLOT(validateAccount()));
+    connect(this->mrbAvatarButton, SIGNAL(clicked()), this,
             SLOT(createAccount()));
 }
 
 loginManager::~loginManager() {}
 
-
 void loginManager::loadAvatars()
 {
-    QPushButton* avatarButton = new QPushButton(ui->frameAvatarWidget);
-    avatarButton->setCheckable(true);
-    avatarButton->setIcon(QIcon(":/avatars/avatarMouse.svg"));
-    avatarButton->setIconSize(QSize(50,50));
-    avatarButton->setFixedSize(50,50);
-    avatarButton->setFlat(true);
-    ui->glAvatar->addWidget(avatarButton,1,0);
+    this->buttonGroup = new QButtonGroup(ui->wAvatarGrid);
+    this->createAvatarButton(":/avatars/avatarMouse.svg");
+    this->createAvatarButton(":/avatars/avatarCat.svg");
+    this->createAvatarButton(":/avatars/avatarDog.svg");
+    this->createAvatarButton(":/avatars/avatarBison.svg");
+    this->createAvatarButton(":/avatars/avatarPigeon.svg");
+    this->createAvatarButton(":/avatars/avatarSheep.svg");
+    this->createAvatarButton(":/avatars/avatarDeer.svg");
+    this->createAvatarButton(":/avatars/avatarDinosaur.svg");
 }
 
 void loginManager::loadUsers()
@@ -98,17 +97,20 @@ void loginManager::loadUsers()
     foreach (QString file, files)
     {
         userInfo* user = this->getUser(GNUSICIAN_USERS_DIR + file);
-        this->userList.append(user);
         QPushButton* button = new QPushButton(ui->scrollAreaWidgetContents);
+        this->userList[button] = user;
         button->setText("   " + user->name);
-        button->setFlat(true);
-        button->setMinimumHeight(40);
-        button->setIcon(QIcon(":/avatars/" + user->avatar));
-        button->setIconSize(QSize(32, 32));
-        button->setStyleSheet("Text-align:left; font-size: 24px;");
-        this->userButtonList.append(button);
+        button->setMinimumHeight(96);
+        button->setIcon(QIcon(user->avatar));
+        button->setIconSize(QSize(64, 64));
+        common::cardStyle(ui->scrollAreaWidgetContents, button);
         ui->vlScrollArea->addWidget(button);
+        connect(button, &QPushButton::clicked, this,
+                [this, button]() { emit loginDone(this->userList[button]); });
     }
+
+    if(this->userList.empty())
+        ui->pbSwitchView->animateClick();
 }
 
 void loginManager::switchView()
@@ -127,7 +129,7 @@ void loginManager::switchView()
     }
 }
 
-void loginManager::createAccount()
+void loginManager::validateAccount()
 {
     // Cache username and password from text fields
     QString username = this->mtfCreateUsername->text();
@@ -156,8 +158,21 @@ void loginManager::createAccount()
     this->user->username = username;
     this->user->password = password;
 
+    this->mtfCreateName->setText(username);
+    ui->pbSwitchView->hide();
     ui->frameCreateWidget->setEnabled(false);
     ui->frameAvatarWidget->show();
+}
+
+void loginManager::createAccount()
+{
+    this->user->name = this->mtfCreateName->text();
+    this->user->avatar = this->buttonGroup->checkedButton()->text();
+    this->user->hoursPlayed = 0;
+    this->user->level = 0;
+    this->user->libraryLocation = QDir::homePath();
+    this->createUserJson(this->user);
+    emit loginDone(this->user);
 }
 
 userInfo* loginManager::getUser(QString path)
@@ -192,7 +207,48 @@ bool loginManager::validatePassword(QString pass) { return true; }
 
 bool loginManager::checkForExistingUser(QString uname)
 {
-    foreach (userInfo* user, this->userList)
+    foreach (userInfo* user, this->userList.values())
         if (user->username == uname) return false;
     return true;
+}
+
+void loginManager::createAvatarButton(QString path)
+{
+    static int cnt = 0;
+    QToolButton* avatarButton = new QToolButton(ui->wAvatarGrid);
+    avatarButton->setCheckable(true);
+    avatarButton->setIcon(QIcon(path));
+    avatarButton->setIconSize(QSize(100, 100));
+    avatarButton->setFixedSize(110, 110);
+    avatarButton->setAutoExclusive(true);
+    avatarButton->setText(path);
+    avatarButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    common::cardStyle(ui->wAvatarGrid, avatarButton);
+    this->buttonGroup->addButton(avatarButton);
+    ui->glAvatarGrid->addWidget(avatarButton, cnt / 4, cnt % 4);
+    avatarButton->setChecked(true);
+    cnt++;
+}
+
+void loginManager::createUserJson(userInfo* newUser)
+{
+    GNUSICIAN_USERS_DIR;
+
+    QJsonObject recordObject;
+    recordObject.insert("name", QJsonValue::fromVariant(newUser->name));
+    recordObject.insert("username", QJsonValue::fromVariant(newUser->username));
+    recordObject.insert("password", QJsonValue::fromVariant(newUser->password));
+    recordObject.insert("avatar", QJsonValue::fromVariant(newUser->avatar));
+
+    QJsonObject appDataObject;
+    appDataObject.insert("level", QJsonValue::fromVariant(newUser->level));
+    appDataObject.insert("hoursPlayed",
+                         QJsonValue::fromVariant(newUser->hoursPlayed));
+    appDataObject.insert("libraryLocation", newUser->libraryLocation);
+    recordObject.insert("appData", appDataObject);
+
+    QJsonDocument doc(recordObject);
+    QFile file(GNUSICIAN_USERS_DIR + newUser->username + ".json");
+    file.open(QIODevice::WriteOnly);
+    file.write(doc.toJson());
 }

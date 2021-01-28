@@ -1,21 +1,19 @@
 #ifndef LOGINMANAGER_H
 #define LOGINMANAGER_H
 
-#include <qboxlayout.h>
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qpushbutton.h>
-#include <QWidget>
+#include <QButtonGroup>
 #include <QScrollArea>
-#include "qtmaterialtextfield.h"
-#include "qtmaterialraisedbutton.h"
+#include <QWidget>
+
 #include "qtmaterialflatbutton.h"
+#include "qtmaterialraisedbutton.h"
+#include "qtmaterialtextfield.h"
 #include "ui_loginManager.h"
 #include "userInfo.h"
 
 namespace ui
 {
-    class loginManager;
+class loginManager;
 }
 QT_END_NAMESPACE
 
@@ -37,15 +35,19 @@ public:
 
 signals:
     void snackMessage(QString);
+    void loginDone(userInfo*);
 
 public slots:
     void switchView();
+    void validateAccount();
     void createAccount();
 
 private slots:
     bool validateUsername(QString uname);
     bool validatePassword(QString pass);
     bool checkForExistingUser(QString uname);
+    void createAvatarButton(QString path);
+    void createUserJson(userInfo*);
 
 private:
     userInfo* getUser(QString path);
@@ -54,11 +56,14 @@ private:
 
     QtMaterialTextField* mtfCreateUsername;
     QtMaterialTextField* mtfCreatePassword;
+    QtMaterialTextField* mtfCreateName;
     QtMaterialRaisedButton* mrbCreateButton;
+    QtMaterialRaisedButton* mrbAvatarButton;
 
-    QVector<QPushButton*> userButtonList;
-    QVector<userInfo*> userList;
+    QMap<QPushButton*, userInfo*> userList;
     userInfo* user;
+
+    QButtonGroup* buttonGroup;
 };
 
 #endif

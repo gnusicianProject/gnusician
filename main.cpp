@@ -1,14 +1,10 @@
-#include <qapplication.h>
-#include <qcoreapplication.h>
-#include <qdir.h>
-#include <qfileinfo.h>
-#include "mainwindow.h"
-
 #include <QApplication>
-#include <algorithm>
-#include <QResource>
 #include <QDir>
 #include <QFileInfo>
+#include <QResource>
+#include <algorithm>
+
+#include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,11 +14,10 @@ int main(int argc, char *argv[])
 
     // Set ~/.gnusician as working directory
     QDir dirObj;
-    if(!QFileInfo::exists(QDir::homePath()+"/.gnusician"))
-        dirObj.mkdir(QDir::homePath()+"/.gnusician");
-    QDir::setCurrent(QDir::homePath()+"/.gnusician");
-    if(!QFileInfo::exists("users"))
-        dirObj.mkdir("users");
+    if (!QFileInfo::exists(QDir::homePath() + "/.gnusician"))
+        dirObj.mkdir(QDir::homePath() + "/.gnusician");
+    QDir::setCurrent(QDir::homePath() + "/.gnusician");
+    if (!QFileInfo::exists("users")) dirObj.mkdir("users");
 
     return a.exec();
 }

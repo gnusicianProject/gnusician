@@ -131,9 +131,23 @@ QLabel
            <height>68</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton
+{
+	Text-align:left; 
+	font-size: 24px; 
+	border: none;
+	padding: 10px;
+}
+QPushButton:pressed
+{
+	
+	background-color: rgb(193, 210, 233);
+}</string>
+         </property>
          <layout class="QVBoxLayout" name="vlScrollArea">
           <property name="spacing">
-           <number>0</number>
+           <number>12</number>
           </property>
          </layout>
         </widget>
@@ -144,8 +158,19 @@ QLabel
    </item>
    <item>
     <widget class="QWidget" name="frameAvatarWidget" native="true">
-     <layout class="QGridLayout" name="glAvatar">
-      <item row="0" column="0">
+     <property name="styleSheet">
+      <string notr="true">QToolButton
+{
+	border: none;
+}
+QToolButton::checked
+{
+	background-color: rgb(193, 210, 233);
+}
+</string>
+     </property>
+     <layout class="QVBoxLayout" name="vlAvatar">
+      <item>
        <widget class="QLabel" name="lAvatar">
         <property name="font">
          <font>
@@ -157,6 +182,11 @@ QLabel
         <property name="text">
          <string>Select Avatar</string>
         </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="wAvatarGrid" native="true">
+        <layout class="QGridLayout" name="glAvatarGrid"/>
        </widget>
       </item>
      </layout>
