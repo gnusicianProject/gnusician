@@ -1,9 +1,8 @@
 #ifndef NAVIGATIONDRAWER_H
 #define NAVIGATIONDRAWER_H
 
-#include <qpushbutton.h>
-#include <QWidget>
 #include <QLabel>
+#include <QWidget>
 
 #include "UserInfo.h"
 #include "ui_NavigationDrawer.h"

@@ -7,12 +7,12 @@
 
 #include "LoginManager.h"
 #include "NavigationDrawer.h"
+#include "UserInfo.h"
 #include "qtmaterialappbar.h"
 #include "qtmaterialdrawer.h"
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialsnackbar.h"
 #include "qtmaterialtextfield.h"
-#include "UserInfo.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -47,7 +47,7 @@ private:
     NavigationDrawer* drawerWidget;
     QtMaterialAppBar* appbar;
     QtMaterialDrawer* drawer;
-    QVBoxLayout *drawerLayout;
+    QVBoxLayout* drawerLayout;
     QtMaterialSnackbar* snackbar;
 };
 #endif  // MAINWINDOW_H

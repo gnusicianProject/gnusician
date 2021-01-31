@@ -1,8 +1,8 @@
 #include <QApplication>
 #include <QDir>
 #include <QFileInfo>
-#include <QResource>
 #include <QFontDatabase>
+#include <QResource>
 
 #include "mainwindow.h"
 

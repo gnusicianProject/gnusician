@@ -9,6 +9,7 @@
 #include <QPixmap>
 #include <QToolButton>
 
+#include "UserInfo.h"
 #include "common.h"
 #include "lib/qtmaterialtheme.h"
 #include "qtmaterialavatar.h"
@@ -16,7 +17,6 @@
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialscrollbar.h"
 #include "qtmaterialtextfield.h"
-#include "UserInfo.h"
 
 LoginManager::LoginManager(QWidget* parent)
     : QWidget(parent), ui(new Ui::LoginManager)
@@ -72,10 +72,10 @@ LoginManager::LoginManager(QWidget* parent)
             SLOT(createAccount()));
 }
 
-LoginManager::~LoginManager() 
+LoginManager::~LoginManager()
 {
     delete ui;
-    foreach(UserInfo* user, this->userList.values())
+    foreach (UserInfo* user, this->userList.values())
         delete user;
 }
 
@@ -114,8 +114,7 @@ void LoginManager::loadUsers()
                 [this, button]() { emit loginDone(this->userList[button]); });
     }
 
-    if(this->userList.empty())
-        ui->pbSwitchView->animateClick();
+    if (this->userList.empty()) ui->pbSwitchView->animateClick();
 }
 
 void LoginManager::switchView()
@@ -203,8 +202,8 @@ UserInfo* LoginManager::getUser(QString path)
 }
 
 bool LoginManager::validateUsername(QString uname)
-{   
-    if(not uname.isEmpty())
+{
+    if (not uname.isEmpty())
         if (uname.contains(QRegExp("^[a-zA-Z0-9_]*$"))) return true;
     return false;
 }

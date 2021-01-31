@@ -1,20 +1,19 @@
 #include "NavigationDrawer.h"
-#include <qlabel.h>
-#include <qnamespace.h>
+
 #include <QPushButton>
+
 #include "common.h"
 #include "ui_NavigationDrawer.h"
 
-NavigationDrawer::NavigationDrawer(QWidget* parent) : QWidget(parent), ui(new Ui::NavigationDrawer)
+NavigationDrawer::NavigationDrawer(QWidget* parent)
+    : QWidget(parent), ui(new Ui::NavigationDrawer)
 {
     ui->setupUi(this);
     this->connectSignals();
     this->signOutSlot();
 }
 
-NavigationDrawer::~NavigationDrawer()
-{
-}
+NavigationDrawer::~NavigationDrawer() {}
 
 void NavigationDrawer::connectSignals()
 {
@@ -36,11 +35,10 @@ void NavigationDrawer::signIn(UserInfo* user)
     this->username->setFont(font);
     this->avatar->setIcon(QIcon(user->avatar));
     this->avatar->setFlat(true);
-    this->avatar->setIconSize(QSize(128,128));
+    this->avatar->setIconSize(QSize(128, 128));
     ui->vlProfile->addWidget(this->avatar);
     ui->vlProfile->addWidget(this->username);
     ui->pbSignOut->setEnabled(true);
-    
 }
 
 void NavigationDrawer::signOutSlot()

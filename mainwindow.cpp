@@ -77,10 +77,14 @@ void MainWindow::connectSignals()
             SLOT(signIn(UserInfo *)));
     connect(this->loginMan, SIGNAL(snackMessage(QString)), this->snackbar,
             SLOT(addMessage(QString)));
-    connect(this->drawerWidget, SIGNAL(signOutClicked()), this, SLOT(signOut()));
-    connect(this->drawerWidget, SIGNAL(signOutClicked()), this->drawerWidget, SLOT(signOutSlot()));
-    connect(this->drawerWidget, SIGNAL(settingsClicked()), this, SLOT(settingsClicked()));
-    connect(this->drawerWidget, SIGNAL(homeClicked()), this, SLOT(homeClicked()));
+    connect(this->drawerWidget, SIGNAL(signOutClicked()), this,
+            SLOT(signOut()));
+    connect(this->drawerWidget, SIGNAL(signOutClicked()), this->drawerWidget,
+            SLOT(signOutSlot()));
+    connect(this->drawerWidget, SIGNAL(settingsClicked()), this,
+            SLOT(settingsClicked()));
+    connect(this->drawerWidget, SIGNAL(homeClicked()), this,
+            SLOT(homeClicked()));
 }
 
 void MainWindow::loginDone(UserInfo *user)
@@ -115,7 +119,7 @@ void MainWindow::settingsClicked()
 
 void MainWindow::homeClicked()
 {
-    if(this->user == nullptr)
+    if (this->user == nullptr)
         ui->stackedWidget->setCurrentWidget(ui->loginPage);
     else
         ui->stackedWidget->setCurrentWidget(ui->libraryPage);
