@@ -1,6 +1,7 @@
 #ifndef UserInfo_H
 #define UserInfo_H
 
+#include <QIcon>
 #include <QString>
 
 class UserInfo

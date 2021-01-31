@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 
 #include "LoginManager.h"
+#include "NavigationDrawer.h"
 #include "qtmaterialappbar.h"
 #include "qtmaterialdrawer.h"
 #include "qtmaterialraisedbutton.h"
@@ -33,15 +34,20 @@ public:
 
 public slots:
     void loginDone(UserInfo*);
+    void signOut();
+    void settingsClicked();
+    void homeClicked();
 
 private:
     Ui::MainWindow* ui;
 
-    UserInfo* user;
+    UserInfo* user = nullptr;
 
     LoginManager* loginMan;
+    NavigationDrawer* drawerWidget;
     QtMaterialAppBar* appbar;
     QtMaterialDrawer* drawer;
+    QVBoxLayout *drawerLayout;
     QtMaterialSnackbar* snackbar;
 };
 #endif  // MAINWINDOW_H

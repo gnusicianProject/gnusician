@@ -72,7 +72,12 @@ LoginManager::LoginManager(QWidget* parent)
             SLOT(createAccount()));
 }
 
-LoginManager::~LoginManager() {}
+LoginManager::~LoginManager() 
+{
+    delete ui;
+    foreach(UserInfo* user, this->userList.values())
+        delete user;
+}
 
 void LoginManager::loadAvatars()
 {

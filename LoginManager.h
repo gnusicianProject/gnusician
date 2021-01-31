@@ -32,6 +32,7 @@ public:
 
     void loadAvatars();
     void loadUsers();
+    void resetLoginManager();
 
 signals:
     void snackMessage(QString);
