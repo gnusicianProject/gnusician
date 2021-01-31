@@ -1,13 +1,13 @@
-#ifndef USERINFO_H
-#define USERINFO_H
+#ifndef UserInfo_H
+#define UserInfo_H
 
 #include <QString>
 
-class userInfo
+class UserInfo
 {
 public:
-    userInfo();
-    ~userInfo();
+    UserInfo();
+    ~UserInfo();
 
     QString name;
     QString username;

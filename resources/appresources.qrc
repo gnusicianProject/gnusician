@@ -8,5 +8,9 @@
     <file>avatars/avatarBison.svg</file>
     <file>avatars/avatarSheep.svg</file>
     <file>avatars/avatarDeer.svg</file>
+    <file>fonts/Ubuntu-Regular.ttf</file>
+    <file>fonts/Ubuntu-Bold.ttf</file>
+    <file>fonts/Ubuntu-Medium.ttf</file>
+    <file>fonts/Ubuntu-Light.ttf</file>
 </qresource>
 </RCC>

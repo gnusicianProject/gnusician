@@ -6,14 +6,14 @@
 
 #include "./ui_mainwindow.h"
 #include "common.h"
-#include "loginManager.h"
+#include "LoginManager.h"
 #include "qtmaterialappbar.h"
 #include "qtmaterialdrawer.h"
 #include "qtmaterialiconbutton.h"
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialsnackbar.h"
 #include "qtmaterialtextfield.h"
-#include "userInfo.h"
+#include "UserInfo.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -59,7 +59,7 @@ void MainWindow::initUi()
     ui->mainLayout->addWidget(ui->stackedWidget, 1, 0);
 
     // Create the login page
-    this->loginMan = new loginManager(ui->loginPage);
+    this->loginMan = new LoginManager(ui->loginPage);
     ui->vlLoginPage->addWidget(this->loginMan);
     ui->vlLoginPage->setAlignment(Qt::AlignCenter);
     connect(this->loginMan, SIGNAL(snackMessage(QString)), this->snackbar,
@@ -68,11 +68,11 @@ void MainWindow::initUi()
 
 void MainWindow::connectSignals()
 {
-    connect(this->loginMan, SIGNAL(loginDone(userInfo *)), this,
-            SLOT(loginDone(userInfo *)));
+    connect(this->loginMan, SIGNAL(loginDone(UserInfo *)), this,
+            SLOT(loginDone(UserInfo *)));
 }
 
-void MainWindow::loginDone(userInfo *user)
+void MainWindow::loginDone(UserInfo *user)
 {
     this->user = user;
     ui->stackedWidget->setCurrentWidget(ui->libraryPage);

@@ -5,13 +5,13 @@
 #include <QMainWindow>
 #include <QVBoxLayout>
 
-#include "loginManager.h"
+#include "LoginManager.h"
 #include "qtmaterialappbar.h"
 #include "qtmaterialdrawer.h"
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialsnackbar.h"
 #include "qtmaterialtextfield.h"
-#include "userInfo.h"
+#include "UserInfo.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -32,14 +32,14 @@ public:
     void connectSignals();
 
 public slots:
-    void loginDone(userInfo*);
+    void loginDone(UserInfo*);
 
 private:
     Ui::MainWindow* ui;
 
-    userInfo* user;
+    UserInfo* user;
 
-    loginManager* loginMan;
+    LoginManager* loginMan;
     QtMaterialAppBar* appbar;
     QtMaterialDrawer* drawer;
     QtMaterialSnackbar* snackbar;

@@ -2,13 +2,22 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QResource>
-#include <algorithm>
+#include <QFontDatabase>
 
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    // Load fonts from resource
+    QFontDatabase::addApplicationFont(":/fonts/Ubuntu-Regular.ttf");
+    QFontDatabase::addApplicationFont(":/fonts/Ubuntu-Bold.ttf");
+    QFontDatabase::addApplicationFont(":/fonts/Ubuntu-Medium.ttf");
+    QFontDatabase::addApplicationFont(":/fonts/Ubuntu-Light.ttf");
+    QApplication::setFont(QFont(":/fonts/Ubuntu-Regular.ttf"));
+
+    // Create MainWindow
     MainWindow w;
     w.show();
 

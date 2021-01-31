@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>loginManager</class>
- <widget class="QWidget" name="loginManager">
+ <class>LoginManager</class>
+ <widget class="QWidget" name="LoginManager">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -50,14 +50,19 @@ QLabel
     <widget class="QLabel" name="lLoginTitle">
      <property name="font">
       <font>
-       <pointsize>72</pointsize>
+       <family>Ubuntu</family>
+       <pointsize>64</pointsize>
        <weight>75</weight>
+       <italic>false</italic>
        <bold>true</bold>
        <underline>false</underline>
       </font>
      </property>
      <property name="tabletTracking">
       <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Gnusician</string>
@@ -87,6 +92,7 @@ QLabel
        <widget class="QLabel" name="lCreate">
         <property name="font">
          <font>
+          <family>Ubuntu</family>
           <pointsize>32</pointsize>
           <weight>75</weight>
           <bold>true</bold>
@@ -107,6 +113,7 @@ QLabel
        <widget class="QLabel" name="lUsers">
         <property name="font">
          <font>
+          <family>Ubuntu</family>
           <pointsize>32</pointsize>
           <weight>75</weight>
           <bold>true</bold>
@@ -174,6 +181,7 @@ QToolButton::checked
        <widget class="QLabel" name="lAvatar">
         <property name="font">
          <font>
+          <family>Ubuntu</family>
           <pointsize>32</pointsize>
           <weight>75</weight>
           <bold>true</bold>
@@ -194,6 +202,11 @@ QToolButton::checked
    </item>
    <item>
     <widget class="QPushButton" name="pbSwitchView">
+     <property name="font">
+      <font>
+       <family>Ubuntu</family>
+      </font>
+     </property>
      <property name="text">
       <string>Don't have an account? Create one!</string>
      </property>
@@ -204,6 +217,8 @@ QToolButton::checked
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources/appresources.qrc"/>
+ </resources>
  <connections/>
 </ui>
