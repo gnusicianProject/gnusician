@@ -49,5 +49,7 @@ private:
     QtMaterialDrawer* drawer;
     QVBoxLayout* drawerLayout;
     QtMaterialSnackbar* snackbar;
+
+    QLabel* lAppBarTitle;
 };
 #endif  // MAINWINDOW_H

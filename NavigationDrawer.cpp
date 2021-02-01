@@ -25,14 +25,11 @@ void NavigationDrawer::connectSignals()
 void NavigationDrawer::signIn(UserInfo* user)
 {
     ui->lPlaceholder->hide();
-    QFont font;
-    font.setBold(true);
-    font.setPointSize(32);
     this->avatar = new QPushButton(ui->frameProfile);
     this->username = new QLabel(ui->frameProfile);
     this->username->setText(user->username);
     this->username->setAlignment(Qt::AlignCenter);
-    this->username->setFont(font);
+    this->username->setFont(QFont(DEFAULT_FONT, 32, 64));
     this->avatar->setIcon(QIcon(user->avatar));
     this->avatar->setFlat(true);
     this->avatar->setIconSize(QSize(128, 128));

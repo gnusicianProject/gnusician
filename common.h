@@ -15,6 +15,8 @@
 #define HONEY "#F6AE2D"
 #define SAFETYORANGE "#F26419"
 
+#define DEFAULT_FONT "Ubuntu"
+
 // Global functions
 namespace common
 {

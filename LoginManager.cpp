@@ -70,6 +70,12 @@ LoginManager::LoginManager(QWidget* parent)
             SLOT(validateAccount()));
     connect(this->mrbAvatarButton, SIGNAL(clicked()), this,
             SLOT(createAccount()));
+    connect(this->mtfCreateUsername, SIGNAL(returnPressed()),
+            this->mrbCreateButton, SIGNAL(clicked()));
+    connect(this->mtfCreatePassword, SIGNAL(returnPressed()),
+            this->mrbCreateButton, SIGNAL(clicked()));
+    connect(this->mtfCreateName, SIGNAL(returnPressed()), this->mrbAvatarButton,
+            SIGNAL(clicked()));
 }
 
 LoginManager::~LoginManager()

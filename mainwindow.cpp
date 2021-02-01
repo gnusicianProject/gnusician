@@ -30,17 +30,23 @@ void MainWindow::initUi()
 {
     ui->stackedWidget->setCurrentWidget(ui->loginPage);
     this->setWindowTitle("Gnusician");
+
     // Create the app bar
     this->appbar = new QtMaterialAppBar(this);
     QtMaterialIconButton *appbarButton =
         new QtMaterialIconButton(QtMaterialTheme::icon("navigation", "menu"));
     appbarButton->setIconSize(QSize(24, 24));
     this->appbar->appBarLayout()->addWidget(appbarButton);
-    this->appbar->appBarLayout()->addStretch(1);
     this->appbar->setFixedHeight(56);
     this->appbar->setBackgroundColor(QColor(QUEENBLUE));
     appbarButton->setColor(Qt::white);
     appbarButton->setFixedSize(QSize(42, 42));
+    this->lAppBarTitle = new QLabel(this->appbar);
+    this->lAppBarTitle->setText("Home");
+    this->lAppBarTitle->setFont(QFont(DEFAULT_FONT,18,64));
+    this->lAppBarTitle->setStyleSheet("color:white");
+    this->appbar->appBarLayout()->addWidget(this->lAppBarTitle);
+    this->appbar->appBarLayout()->addStretch(1);
 
     // Create the app drawer
     this->drawer = new QtMaterialDrawer(this);
@@ -92,13 +98,15 @@ void MainWindow::loginDone(UserInfo *user)
     this->user = user;
     ui->stackedWidget->setCurrentWidget(ui->libraryPage);
     ui->lLibraryTitle->setText("Libray Page: Welcome " + user->name);
+    this->lAppBarTitle->setText("Library");
 }
 
 void MainWindow::signOut()
 {
-    this->loginMan->deleteLater();
+    delete this->loginMan;
     this->drawerWidget->deleteLater();
     this->user = nullptr;
+    QApplication::processEvents();
 
     this->loginMan = new LoginManager(ui->loginPage);
     ui->vlLoginPage->addWidget(this->loginMan);
@@ -108,12 +116,14 @@ void MainWindow::signOut()
     this->drawerLayout->addWidget(this->drawerWidget);
     this->connectSignals();
 
+    this->lAppBarTitle->setText("Home");
     this->drawer->closeDrawer();
 }
 
 void MainWindow::settingsClicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->settingsPage);
+    this->lAppBarTitle->setText("Settings");
     this->drawer->closeDrawer();
 }
 
@@ -123,5 +133,7 @@ void MainWindow::homeClicked()
         ui->stackedWidget->setCurrentWidget(ui->loginPage);
     else
         ui->stackedWidget->setCurrentWidget(ui->libraryPage);
+
+    this->lAppBarTitle->setText("Home");
     this->drawer->closeDrawer();
 }
