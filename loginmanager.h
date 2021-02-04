@@ -5,11 +5,11 @@
 #include <QScrollArea>
 #include <QWidget>
 
-#include "UserInfo.h"
+#include "userinfo.h"
 #include "qtmaterialflatbutton.h"
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialtextfield.h"
-#include "ui_LoginManager.h"
+#include "ui_loginmanager.h"
 
 namespace ui
 {

@@ -5,14 +5,14 @@
 #include <QMainWindow>
 #include <QVBoxLayout>
 
-#include "LoginManager.h"
-#include "NavigationDrawer.h"
-#include "UserInfo.h"
+#include "loginmanager.h"
+#include "navigationdrawer.h"
 #include "qtmaterialappbar.h"
 #include "qtmaterialdrawer.h"
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialsnackbar.h"
 #include "qtmaterialtextfield.h"
+#include "userinfo.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui

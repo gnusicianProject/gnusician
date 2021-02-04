@@ -1,4 +1,4 @@
-#include "LoginManager.h"
+#include "loginmanager.h"
 
 #include <QBoxLayout>
 #include <QDebug>
@@ -9,7 +9,6 @@
 #include <QPixmap>
 #include <QToolButton>
 
-#include "UserInfo.h"
 #include "common.h"
 #include "lib/qtmaterialtheme.h"
 #include "qtmaterialavatar.h"
@@ -50,7 +49,7 @@ LoginManager::LoginManager(QWidget* parent)
     this->mtfCreatePassword->setInkColor(QColor(DARKSKY));
     this->mtfCreateName->setInkColor(QColor(DARKSKY));
     common::cardStyle(this, ui->frameCreateWidget);
-    common::cardStyle(this, ui->frameSelectWidget);
+    // common::cardStyle(this, ui->frameSelectWidget);
     common::cardStyle(this, ui->frameAvatarWidget);
     QtMaterialScrollBar* scrollBar = new QtMaterialScrollBar(ui->saSelectUser);
     scrollBar->setSliderColor(QColor(DARKSKY));
@@ -110,10 +109,10 @@ void LoginManager::loadUsers()
         UserInfo* user = this->getUser(GNUSICIAN_USERS_DIR + file);
         QPushButton* button = new QPushButton(ui->scrollAreaWidgetContents);
         this->userList[button] = user;
-        button->setText("   " + user->name);
-        button->setMinimumHeight(96);
+        button->setText("    " + user->name);
+        button->setMinimumHeight(128);
         button->setIcon(QIcon(user->avatar));
-        button->setIconSize(QSize(64, 64));
+        button->setIconSize(QSize(80, 80));
         common::cardStyle(ui->scrollAreaWidgetContents, button);
         ui->vlScrollArea->addWidget(button);
         connect(button, &QPushButton::clicked, this,

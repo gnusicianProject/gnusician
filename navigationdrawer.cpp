@@ -1,9 +1,8 @@
-#include "NavigationDrawer.h"
+#include "navigationdrawer.h"
 
 #include <QPushButton>
 
 #include "common.h"
-#include "ui_NavigationDrawer.h"
 
 NavigationDrawer::NavigationDrawer(QWidget* parent)
     : QWidget(parent), ui(new Ui::NavigationDrawer)

@@ -5,16 +5,16 @@
 #include <QSpacerItem>
 
 #include "./ui_mainwindow.h"
-#include "LoginManager.h"
-#include "NavigationDrawer.h"
-#include "UserInfo.h"
 #include "common.h"
+#include "loginmanager.h"
+#include "navigationdrawer.h"
 #include "qtmaterialappbar.h"
 #include "qtmaterialdrawer.h"
 #include "qtmaterialiconbutton.h"
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialsnackbar.h"
 #include "qtmaterialtextfield.h"
+#include "userinfo.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -43,7 +43,7 @@ void MainWindow::initUi()
     appbarButton->setFixedSize(QSize(42, 42));
     this->lAppBarTitle = new QLabel(this->appbar);
     this->lAppBarTitle->setText("Home");
-    this->lAppBarTitle->setFont(QFont(DEFAULT_FONT,18,64));
+    this->lAppBarTitle->setFont(QFont(DEFAULT_FONT, 18, 64));
     this->lAppBarTitle->setStyleSheet("color:white");
     this->appbar->appBarLayout()->addWidget(this->lAppBarTitle);
     this->appbar->appBarLayout()->addStretch(1);

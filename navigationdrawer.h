@@ -4,8 +4,8 @@
 #include <QLabel>
 #include <QWidget>
 
-#include "UserInfo.h"
-#include "ui_NavigationDrawer.h"
+#include "userinfo.h"
+#include "ui_navigationdrawer.h"
 
 namespace ui
 {
