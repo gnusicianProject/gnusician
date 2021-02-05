@@ -10,7 +10,8 @@ To build the app, you need the following tools:
 * cmake
 * make
 * g++
-* qt 5.15 libraries
+* qt 5.15 core libraries
+* qt 5.15 multimedia library
 
 You can get all the tools from your distros repo. 
 For example in debian based distros, run the following:

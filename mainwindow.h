@@ -12,7 +12,7 @@
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialsnackbar.h"
 #include "qtmaterialtextfield.h"
-#include "userinfo.h"
+#include "settingsmanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -44,6 +44,7 @@ private:
     UserInfo* user = nullptr;
 
     LoginManager* loginMan;
+    SettingsManager* settingsMan;
     NavigationDrawer* drawerWidget;
     QtMaterialAppBar* appbar;
     QtMaterialDrawer* drawer;

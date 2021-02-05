@@ -1,8 +1,10 @@
 #include "mainwindow.h"
+#include <qaudio.h>
 
 #include <QBoxLayout>
 #include <QDebug>
 #include <QSpacerItem>
+#include <QAudioDeviceInfo>
 
 #include "./ui_mainwindow.h"
 #include "common.h"
@@ -14,7 +16,6 @@
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialsnackbar.h"
 #include "qtmaterialtextfield.h"
-#include "userinfo.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -71,6 +72,12 @@ void MainWindow::initUi()
     ui->vlLoginPage->addWidget(this->loginMan);
     ui->vlLoginPage->setAlignment(Qt::AlignCenter);
 
+    // Create the settings page
+    this->settingsMan = new SettingsManager(ui->settingsPage);
+    ui->vlSettingsPage->addWidget(this->settingsMan);
+    ui->vlSettingsPage->setAlignment(Qt::AlignCenter);
+
+    // Create the navigation drawer content
     this->drawerWidget = new NavigationDrawer(this->drawer);
     drawerLayout->addWidget(this->drawerWidget);
 }
@@ -88,6 +95,8 @@ void MainWindow::connectSignals()
     connect(this->drawerWidget, SIGNAL(signOutClicked()), this->drawerWidget,
             SLOT(signOutSlot()));
     connect(this->drawerWidget, SIGNAL(settingsClicked()), this,
+            SLOT(settingsClicked()));
+    connect(this->drawerWidget, SIGNAL(settingsClicked()), this->settingsMan,
             SLOT(settingsClicked()));
     connect(this->drawerWidget, SIGNAL(homeClicked()), this,
             SLOT(homeClicked()));

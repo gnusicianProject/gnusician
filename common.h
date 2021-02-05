@@ -23,4 +23,28 @@ namespace common
 void cardStyle(QWidget* parent, QWidget* widget);
 }
 
+class UserInfo
+{
+public:
+    QString name;
+    QString username;
+    QString password;
+    QString avatar;
+
+    unsigned level = 0;
+    float hoursPlayed = 0;
+    QString libraryLocation;
+
+private:
+};
+
+class Settings
+{
+public:
+// library settings
+// audio settings
+// developer options
+private:
+};
+
 #endif

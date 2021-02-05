@@ -25,7 +25,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Widgets UiTools REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Multimedia REQUIRED)
 
 include_directories(qt-material-widgets/components)
 add_subdirectory(qt-material-widgets/components)
@@ -36,14 +36,15 @@ set(PROJECT_SOURCES
         mainwindow.h
         loginmanager.cpp
         loginmanager.h
+        settingsmanager.cpp
+        settingsmanager.h
         navigationdrawer.cpp
         navigationdrawer.h
         common.cpp
         common.h
-        userinfo.cpp
-        userinfo.h
         mainwindow.ui
         loginmanager.ui
+        settingsmanager.ui
         navigationdrawer.ui
 )
 
@@ -52,7 +53,7 @@ add_executable(gnusician
     resources/appresources.qrc
 )
 
-target_link_libraries(gnusician PRIVATE Qt5::Core Qt5::Widgets Qt5::UiTools material)
+target_link_libraries(gnusician PRIVATE Qt5::Core Qt5::Widgets Qt5::Multimedia material)
 target_include_directories(gnusician PUBLIC ./ ./qt-material-widgets/components)
 install(TARGETS gnusician DESTINATION bin)
 install(TARGETS material DESTINATION lib)

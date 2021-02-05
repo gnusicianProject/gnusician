@@ -5,7 +5,7 @@
 #include <QScrollArea>
 #include <QWidget>
 
-#include "userinfo.h"
+#include "common.h"
 #include "qtmaterialflatbutton.h"
 #include "qtmaterialraisedbutton.h"
 #include "qtmaterialtextfield.h"
@@ -54,12 +54,6 @@ private:
     UserInfo* getUser(QString path);
 
     Ui::LoginManager* ui;
-
-    QtMaterialTextField* mtfCreateUsername;
-    QtMaterialTextField* mtfCreatePassword;
-    QtMaterialTextField* mtfCreateName;
-    QtMaterialRaisedButton* mrbCreateButton;
-    QtMaterialRaisedButton* mrbAvatarButton;
 
     QMap<QPushButton*, UserInfo*> userList;
     UserInfo* user;

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SettingsManager</class>
+ <widget class="QWidget" name="SettingsManager">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>722</width>
+    <height>723</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget
+{
+	background-color: white
+}
+QLabel
+{
+	color: rgb(47, 72, 88)
+}
+QScrollArea
+{
+	border: none;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="vlSettingsPage">
+   <item>
+    <widget class="QLabel" name="lSettingsTitle">
+     <property name="font">
+      <font>
+       <pointsize>64</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Settings</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QScrollArea" name="saSettings">
+     <property name="styleSheet">
+      <string notr="true">QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 0px;
+
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+}
+
+QComboBox {
+    padding-top: 3px;
+    padding-left: 4px;
+    selection-background-color: rgb(51, 101, 138);
+}</string>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="saSettingsContent">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>704</width>
+        <height>596</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="vlSettingsContent">
+       <item>
+        <widget class="QLabel" name="lDeveloperOptions">
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Developer Options</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="developerSettings" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>100</height>
+          </size>
+         </property>
+         <layout class="QGridLayout" name="glDeveloperSettings"/>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lAudio">
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Audio</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="audioSettings" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>100</height>
+          </size>
+         </property>
+         <layout class="QGridLayout" name="glAudioSettings">
+          <item row="1" column="1">
+           <widget class="QComboBox" name="cbMicrophone">
+            <property name="frame">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QtMaterialProgress" name="pbMicrophoneBar" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="QLabel" name="lMicrophone">
+            <property name="text">
+             <string>Input Device</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lLibrary">
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Library</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="librarySettings" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>100</height>
+          </size>
+         </property>
+         <layout class="QGridLayout" name="glLibrarySettings">
+          <item row="0" column="0">
+           <widget class="QtMaterialTextField" name="mtfLibraryPath" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QtMaterialTextField</class>
+   <extends>QWidget</extends>
+   <header>qtmaterialtextfield.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QtMaterialProgress</class>
+   <extends>QWidget</extends>
+   <header>qtmaterialprogress.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

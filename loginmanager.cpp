@@ -23,33 +23,22 @@ LoginManager::LoginManager(QWidget* parent)
     ui->setupUi(this);
     ui->vlLoginPage->setAlignment(Qt::AlignHCenter);
 
-    this->mtfCreateUsername = new QtMaterialTextField(ui->frameCreateWidget);
-    this->mtfCreatePassword = new QtMaterialTextField(ui->frameCreateWidget);
-    this->mtfCreateName = new QtMaterialTextField(ui->frameAvatarWidget);
-    this->mrbCreateButton = new QtMaterialRaisedButton(ui->frameCreateWidget);
-    this->mrbAvatarButton = new QtMaterialRaisedButton(ui->frameAvatarWidget);
-    ui->vlCreate->addWidget(this->mtfCreateUsername);
-    ui->vlCreate->addWidget(this->mtfCreatePassword);
-    ui->vlCreate->addWidget(this->mrbCreateButton);
-    ui->vlAvatar->addWidget(this->mrbAvatarButton);
-    ui->vlAvatar->insertWidget(0, this->mtfCreateName);
-
-    this->mrbCreateButton->setText("Create");
-    this->mrbAvatarButton->setText("Done");
-    this->mtfCreateUsername->setLabel("Username");
-    this->mtfCreatePassword->setLabel("Password (optional)");
-    this->mtfCreateName->setLabel("Name");
+    // Set button texts
+    ui->mrbCreateButton->setText("Create");
+    ui->mrbAvatarButton->setText("Done");
+    ui->mtfCreateUsername->setLabel("Username");
+    ui->mtfCreatePassword->setLabel("Password (optional)");
+    ui->mtfCreateName->setLabel("Name");
 
     // Tweak styles
-    this->mrbCreateButton->setHaloVisible(false);
-    this->mrbCreateButton->setBackgroundColor(QColor(SAFETYORANGE));
-    this->mrbAvatarButton->setHaloVisible(false);
-    this->mrbAvatarButton->setBackgroundColor(QColor(SAFETYORANGE));
-    this->mtfCreateUsername->setInkColor(QColor(DARKSKY));
-    this->mtfCreatePassword->setInkColor(QColor(DARKSKY));
-    this->mtfCreateName->setInkColor(QColor(DARKSKY));
+    ui->mrbCreateButton->setHaloVisible(false);
+    ui->mrbCreateButton->setBackgroundColor(QColor(SAFETYORANGE));
+    ui->mrbAvatarButton->setHaloVisible(false);
+    ui->mrbAvatarButton->setBackgroundColor(QColor(SAFETYORANGE));
+    ui->mtfCreateUsername->setInkColor(QColor(DARKSKY));
+    ui->mtfCreatePassword->setInkColor(QColor(DARKSKY));
+    ui->mtfCreateName->setInkColor(QColor(DARKSKY));
     common::cardStyle(this, ui->frameCreateWidget);
-    // common::cardStyle(this, ui->frameSelectWidget);
     common::cardStyle(this, ui->frameAvatarWidget);
     QtMaterialScrollBar* scrollBar = new QtMaterialScrollBar(ui->saSelectUser);
     scrollBar->setSliderColor(QColor(DARKSKY));
@@ -65,15 +54,15 @@ LoginManager::LoginManager(QWidget* parent)
     this->loadAvatars();
 
     connect(ui->pbSwitchView, SIGNAL(clicked()), this, SLOT(switchView()));
-    connect(this->mrbCreateButton, SIGNAL(clicked()), this,
+    connect(ui->mrbCreateButton, SIGNAL(clicked()), this,
             SLOT(validateAccount()));
-    connect(this->mrbAvatarButton, SIGNAL(clicked()), this,
+    connect(ui->mrbAvatarButton, SIGNAL(clicked()), this,
             SLOT(createAccount()));
-    connect(this->mtfCreateUsername, SIGNAL(returnPressed()),
-            this->mrbCreateButton, SIGNAL(clicked()));
-    connect(this->mtfCreatePassword, SIGNAL(returnPressed()),
-            this->mrbCreateButton, SIGNAL(clicked()));
-    connect(this->mtfCreateName, SIGNAL(returnPressed()), this->mrbAvatarButton,
+    connect(ui->mtfCreateUsername, SIGNAL(returnPressed()),
+            ui->mrbCreateButton, SIGNAL(clicked()));
+    connect(ui->mtfCreatePassword, SIGNAL(returnPressed()),
+            ui->mrbCreateButton, SIGNAL(clicked()));
+    connect(ui->mtfCreateName, SIGNAL(returnPressed()), ui->mrbAvatarButton,
             SIGNAL(clicked()));
 }
 
@@ -141,8 +130,8 @@ void LoginManager::switchView()
 void LoginManager::validateAccount()
 {
     // Cache username and password from text fields
-    QString username = this->mtfCreateUsername->text();
-    QString password = this->mtfCreatePassword->text();
+    QString username = ui->mtfCreateUsername->text();
+    QString password = ui->mtfCreatePassword->text();
 
     // Check if username/password are valid and if user exists
     if (not this->validateUsername(username))
@@ -167,7 +156,7 @@ void LoginManager::validateAccount()
     this->user->username = username;
     this->user->password = password;
 
-    this->mtfCreateName->setText(username);
+    ui->mtfCreateName->setText(username);
     ui->pbSwitchView->hide();
     ui->frameCreateWidget->setEnabled(false);
     ui->frameAvatarWidget->show();
@@ -175,7 +164,7 @@ void LoginManager::validateAccount()
 
 void LoginManager::createAccount()
 {
-    this->user->name = this->mtfCreateName->text();
+    this->user->name = ui->mtfCreateName->text();
     this->user->avatar = this->buttonGroup->checkedButton()->text();
     this->user->hoursPlayed = 0;
     this->user->level = 0;
